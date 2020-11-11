@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .container {
+            margin: 0 auto;
+            width: 90%;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            justify-content: space-around;
+            text-align: center;
+
+        }
+
+        .container>div {
+            padding: 10px;
+            width: 250px;
+            height: 350px;
+            background-color: aliceblue;
+            border: 1px solid gray;
+            box-shadow: 0 0 3px 3px grey;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>영화포스터</h1>
+    <button onclick="addMovie()">추가</button>
+    <hr />
+    <div class="container" id="movie-list">
+        <!-- <div id="movie-item-1">
+            <div>
+                <button onclick="deleteMovie(1)">삭제</button>
+                <img id="poster-1" src="#" width="100%" height="200px" />
+            </div>
+             <div id="title-1">제목임시</div>
+            <div id="rating-1"> 평점 임시</div>
+            
+        </div> -->
+    </div>
+
+    <script>
+
+        //번호
+        var no = 2;
+
+        //임시 다운로드
+        var movie = {
+            poster: "https://newsimg.sedaily.com/2020/09/28/1Z81412DEP_1.jpg",
+            title: "도굴",
+            rating: 9.1
+
+
+        }
+
+        // $("#poster-1").attr("src",movie.poster);
+        // $("#title-1").html("<h3>"+movie.title+"</h3>");
+        // $("#rating-1").html("<h3>"+movie.rating+"</h3>");
+
+        function addMovie() {
+            var movieitem = `<div id="movie-item-${no}">`;
+            movieitem += `<div>`;
+            movieitem += `<button onclick="deleteMovie(${no})">삭제</button>`;
+            movieitem += `<img id="poster-${no}" src="${movie.poster}" width="100%" height="200px" />`;
+            movieitem += `</div>`;
+            movieitem += `<div id="title-${no}">${movie.title}</div>`;
+            movieitem += `<div id="rating-${no}"> ${movie.rating}</div>`;
+            movieitem += `</div>`;
+
+            $("#movie-list").prepend(movieitem);
+
+            no = no + 1;
+
+
+        }
+
+        function deleteMovie(id) {
+
+            $("#movie-list-" + id).remove();
+            // $("#item-"+id).remove();
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
