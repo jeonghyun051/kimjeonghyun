@@ -1,0 +1,27 @@
+.login {
+    width: 60%;
+
+    margin: 50px auto;
+    display:flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.login__box{
+    background-color: white;
+    margin-left:20px;
+    width: 350px;
+    border:1px solid rgb(210, 210, 210);
+    padding:20px;
+    margin-top: 15px;
+}
+.login__box a{
+    text-decoration:none ;
+
+}
+.login__form input{
+    height:40px;
+    margin-bottom:5px;
+    border:1px solid rgb(210, 210, 210);
+}
+

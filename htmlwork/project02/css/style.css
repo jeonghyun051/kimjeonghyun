@@ -1,0 +1,27 @@
+*{
+    margin : 0px;
+    border: 0px
+}
+
+.first{
+    background-color: #363D3F;
+    width: 80px;
+    height: 80px;
+}
+
+.f_line{
+    display: flex;
+    align-items: center;
+}
+
+.material-icons{
+    color:white;
+    margin:25px;
+}
+
+.title{
+    font-size: 20px;
+    margin-left: 20px;
+    font-weight: 700;
+    color: #5E5E5A;
+}

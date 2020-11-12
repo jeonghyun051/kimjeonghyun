@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <style>
+            .flex-container{
+                display: flex;
+                justify-content: space-between;        /* 진행방향 가로!! flex-start, flex-end, center*/
+                
+            }                                                                    /*space-evenly, space-around*, space-between*/
+
+            .item{
+                border: 5px solid black;
+                height: 100px;
+                width: 200px;
+                
+                display:flex;
+                justify-content: flex-end;
+                align-items: flex-end;                             /* cross Axis 진행방향 반대 리버스 방향 세로*/
+
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class = "flex-container">
+            <div class="item">첫번째 박스</div>
+            <div class="item">두번째 박스</div>
+            <div class ="item">세번째 박스</div>
+        </div>
+    </body>
+</html>
