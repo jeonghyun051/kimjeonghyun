@@ -20,6 +20,4 @@ class StarUnit {
 		return 0;
 		
 	}
-	
-	
 }

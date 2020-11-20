@@ -24,6 +24,7 @@ public class Star3App {
 		Dragon d = new Dragon("µå¶ó±º1",100,20);
 		
 		attack(z,d);
+		attack(d,z);
 		
 	}
 
