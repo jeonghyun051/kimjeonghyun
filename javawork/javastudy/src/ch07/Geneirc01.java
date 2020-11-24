@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -22,14 +23,11 @@ public class Geneirc01 {
 
 	public static void main(String[] args) {
 	
-		ResponseDto dto = new ResponseDto() ;
+		ResponseDto<Integer> dto = new ResponseDto() ;
 			dto.setStatusCode(200);
-			dto.setData("»ç°ú");
-			dto.setData(new Dog());
+			dto.setData(1);
 			
-			Object b = new Dog();
-			Dog dd = (Dog)b;
-			System.out.println(dd.name);
+			System.out.println(Integer.getInteger());
 			
 			System.out.println(dto.getStatusCode());
 			
