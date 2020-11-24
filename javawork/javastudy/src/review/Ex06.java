@@ -13,6 +13,11 @@ public class Ex06 {
 		//특징 : 내 데이터가 유실될 수 있음
 		double n3 = 10.5;
 		int n4 = (int)n3; //다운 캐스팅(명시적 형변환) 
+		
+		int a1 = 300;
+		double a2 = 400;
+		
+		
 		System.out.println(n4);
 		
 	}

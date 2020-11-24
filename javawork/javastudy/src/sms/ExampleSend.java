@@ -2,9 +2,11 @@ package sms;
 
 import java.util.HashMap;
 import org.json.simple.JSONObject;
+
+import lombok.Data;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
-
+@Data
 /**
  * @class ExampleSend
  * @brief This sample code demonstrate how to send sms through CoolSMS Rest API PHP
@@ -18,7 +20,7 @@ public class ExampleSend {
     // 4 params(to, from, type, text) are mandatory. must be filled
     HashMap<String, String> params = new HashMap<String, String>();
     params.put("to", to);
-    params.put("from", "sdgsdg");
+    params.put("from", "01050134747");
     params.put("type", "SMS");
     params.put("text", text);
     params.put("app_version", "test app 1.2"); // application name and version
@@ -37,6 +39,6 @@ public class ExampleSend {
   }
 
   public static void main(String[] args) {
-	  문자전송("010","ㄱㄱ");
+	  ExampleSend ex = new ExampleSend();
   }
 }

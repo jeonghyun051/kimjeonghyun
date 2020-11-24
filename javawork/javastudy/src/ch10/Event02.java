@@ -54,6 +54,7 @@ public class Event02 extends JFrame implements ActionListener{
 		new Event02();
 
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
