@@ -43,18 +43,7 @@ public class Event01 extends JFrame{
 			}
 		});
 		
-		
-		btn1.addKeyListener(new KeyAdapter() {
-			
-			public void a
-			
-			
-		});
-		
-		btn.add
-		
 	
-		
 		//2. JVM(OS)이 어떤 이벤트가 발생했는지를 확인
 		//3. 발생된 이벤트를 이벤트 분배 스레드에 등록(대기열 등록)
 		//4. 순서대로 리스너가 실행됨

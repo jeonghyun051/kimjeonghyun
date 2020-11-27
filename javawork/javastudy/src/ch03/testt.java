@@ -6,21 +6,22 @@ import ch09.Swing01;
 
 public class testt {
 
+	private static int sum2(int b , int c) {
+	
+		return b + c;
+	}
+	
+	public static int sum(int i , int a) {
+		
+		return i + a;
+	}
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		Scanner sc = new Scanner(System.in);
-		System.out.println("ÀÔ·Â");
-		int a = sc.nextInt();
-		
-		if(a%2==0)
-		{
-			System.out.println("Â¦¼ö");
-		}else{
-			System.out.println("È¦¼ö");
-		}
-		
-		
+		int i = 20;
+		int s = sum(i,10);
+
+		int c = sum2(i,14);
 	}
 
 }

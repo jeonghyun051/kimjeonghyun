@@ -71,6 +71,8 @@ public class Event02 extends JFrame implements ActionListener{
 		if (btn3 == e.getSource()) {
 			laTitle.setText("참외클릭");
 		}
+		
+		(btn3)
 	}
 
 }
