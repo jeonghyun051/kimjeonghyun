@@ -33,8 +33,6 @@ public class MyServerSocket3{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
 	}
 	
 	class SocketThread extends Thread{
@@ -58,7 +56,6 @@ public class MyServerSocket3{
 					for (SocketThread sockThread : vc) {
 						sockThread.writer.println(line);
 					}
-					
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
