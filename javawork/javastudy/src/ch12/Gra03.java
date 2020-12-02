@@ -29,6 +29,8 @@ public class Gra03 extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					jp1.setVisible(true);
+					Thread thread = new Thread(Runnable);
+					
 					
 				}
 			});
@@ -59,7 +61,7 @@ public class Gra03 extends JFrame{
 					g.fillRect(x, array1, 5, 300);
 					repaint(30);
 					x+=50;	
-				
+					
 				}			
 				
 //				super.paintComponent(g);

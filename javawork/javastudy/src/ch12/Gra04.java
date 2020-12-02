@@ -15,6 +15,14 @@ import javax.swing.JPanel;
 
 public class Gra04 extends JFrame{
 		public Gra04() {
+			
+			ArrayList<Integer> array = new ArrayList();
+			array.add(50);
+			array.add(100);
+			array.add(150);
+			array.add(200);
+			array.add(150);
+			
 			setTitle("4444");
 			setSize(350,400);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
