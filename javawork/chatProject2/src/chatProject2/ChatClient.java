@@ -5,9 +5,14 @@ import java.awt.Color;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.EventHandler;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -49,6 +54,19 @@ public class ChatClient extends JFrame {
 		setVisible(true);
 	}
 
+	private void text() {
+		File file = new File("D:\\workspace\\output.txt");
+
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			writer.write(taChatList.getText());
+			writer.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	private void init() {
 		btnConnect = new JButton("connect");
 		btnSend = new JButton("send");
@@ -86,13 +104,30 @@ public class ChatClient extends JFrame {
 	}
 
 	private void listener() {
-
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				// TODO Auto-generated method stub
+				JFrame frame = (JFrame) e.getWindow();
+				frame.dispose();
+				File f = new File("D:\\workspace\\output.txt");
+				try {
+					String AreaText = taChatList.getText();
+					FileWriter fw = new FileWriter(f);
+					fw.write(AreaText);
+					fw.close();
+				} catch (Exception e2) {
+					System.out.println(TAG + "파일 저장 실패");
+				}
+				System.out.println("파일 저장 종료");
+			}
+		});
 		btnConnect.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				connect();
-
+				btnConnect.setEnabled(false);
 			}
 		});
 
@@ -104,29 +139,13 @@ public class ChatClient extends JFrame {
 
 			}
 		});
-
-	}
-
-	private void send() {
-		String chat = tfChat.getText();
-
-		// 1번 taChatList 뿌리기
-		taChatList.append("[내 메시지] " + chat + "\n");
-		try {
-			OutputStream output = new FileOutputStream("D:/workspace/Output.txt");
-			String str = taChatList.getText();
-			byte[] by = str.getBytes();
-			output.write(by);
-
-		} catch (Exception e) {
-
-		}
-		// 2번 서버로 전송
-		writer.println(chat);
-		writer.flush();
-
-		// 3번 tfChat비우기
-		tfChat.setText("");
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				text();
+				System.exit(0);
+			}
+		});
 
 	}
 
@@ -146,6 +165,21 @@ public class ChatClient extends JFrame {
 		}
 	}
 
+	private void send() {
+		String chat = tfChat.getText();
+
+		// 1번 taChatList 뿌리기
+		taChatList.append("[내 메시지] " + chat + "\n");
+		// 2번 서버로 전송
+		String input = tfChat.getText();
+		writer.println(input);
+		writer.flush();
+
+		// 3번 tfChat비우기
+		tfChat.setText("");
+
+	}
+
 	class ReaderThread extends Thread {
 
 		// while을 돌면서 서버로부터 메시지를 받아서 taChatList에 뿌리기
@@ -153,14 +187,16 @@ public class ChatClient extends JFrame {
 		public void run() {
 			try {
 				while (true) {
-					taChatList.append(reader.readLine() + "\n");
-					taChatList.transferFocus();
+					String input = null;
+					if ((input = reader.readLine()) != null) {
+						taChatList.append("[상대방 메시지] " + input + "\n");
+					}
+					System.out.println("출력");
 				}
-
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(TAG + "안됨");
 			}
+
 		}
 	}
 

@@ -8,10 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
 
-import com.google.gson.Gson;
-
 import protocol.Chat;
-import protocol.RequestDto;
 
 public class ChatServer {
 
@@ -24,7 +21,7 @@ public class ChatServer {
 	public ChatServer() {
 
 		try {
-			vc = new Vector<ClientInfo>();
+			vc = new Vector<>();
 			serverSocket = new ServerSocket(10000);
 			System.out.println(TAG + "클라이언트 연결 대기중");
 
@@ -53,7 +50,7 @@ public class ChatServer {
 			this.socket = socket;
 			try {
 				reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				writer = new PrintWriter(socket.getOutputStream());
+				writer = new PrintWriter(socket.getOutputStream(), true);
 
 			} catch (Exception e) {
 				System.out.println("서버 연결 실패" + e.getMessage());
@@ -63,41 +60,36 @@ public class ChatServer {
 		// 역할 : 클라이언트로 부터 받은 메시지를 모든 클라이언트에게 재전송한다.
 		@Override
 		public void run() {
+			String input = null;
 			try {
-				String data = null;
-				while ((data = reader.readLine()) != null) {
-					sendAllClient("" + data);
+				while ((input = reader.readLine()) != null) {
+					String[] gubun = input.split(":");
+					String protocol = gubun[0];
+					if (protocol.equals(Chat.ALL)) {
+						for (int i = 0; i < vc.size(); i++) {
+							if (vc.get(i) != this) {
+								ClientInfo clientInfo = vc.get(i);
+								clientInfo.writer.println(gubun[1]);
+							}
+						}
+					} else {
+						for (int i = 0; i < vc.size(); i++) {
+							if (vc.get(i) != this) {
+								ClientInfo clientInfo = vc.get(i);
+								clientInfo.writer.println(input);
+							}
+						}
+					}
 				}
-				reader.close();
-
-			} catch (Exception e) {
+			} catch (IOException e) {
 				e.printStackTrace();
-				System.err.println(socket + " 끊어짐");
-
-			}
-
-		}
-
-		public void sendMessage(String msg) {
-			writer.println(msg);
-			writer.flush();
-		}
-
-		public void sendAllClient(String msg) {
-			for (int i = 0; i < vc.size(); i++) {
-				if (vc.get(i) != this) {
-					ClientInfo clientInfo = vc.get(i);
-					clientInfo.sendMessage(msg);
-				}
 			}
 		}
-
 	}
-
-//	인터페이스 all
-//	파일만들어서
-//	벡터에있는거 다 가져와서 파일에 집어넣기(x버튼눌러서 창을 끌때 파일로 저장하기)
-//	클라채팅사진두개 파일에담긴 채팅내역까지 스샷해서
+//   인터페이스 all
+//   파일만들어서
+//   벡터에있는거 다 가져와서 파일에 집어넣기(x버튼눌러서 창을 끌때 파일로 저장하기)
+//   클라채팅사진두개 파일에담긴 채팅내역까지 스샷해서
 
 	public static void main(String[] args) {
 

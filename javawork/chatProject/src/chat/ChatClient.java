@@ -149,7 +149,8 @@ public class ChatClient extends JFrame {
 		// json으로 파싱
 
 		// 2번 서버로 전송
-		writer.println(chat);
+		String input = tfChat.getText();
+		writer.println(input);
 		writer.flush();
 
 		// 3번 tfChat비우기
