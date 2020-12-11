@@ -12,25 +12,19 @@ public class Zombie extends JLabel {
 
 	public GamePanel gamepanel;
 	public Zombie zombie = this;
-	public int x = 800;
+	public int x = 650;
 	public int y = 240;
 	public final static String TAG = "Zombie:";
-	public Boolean isMoving = true;
+	public Boolean isMoving2 = true;
 
 	public Zombie() {
 
-		new Thread(new Runnable() {
-			@Override
-			synchronized public void run() {
-				zombieIcon = new ImageIcon("images/zombie_walk.gif");
-				zombie_attackIcon = new ImageIcon("images/zombie1.png");
-				setIcon(zombieIcon);
-				setSize(90, 90);
-				setLocation(x, y);
-				MoveLeft();
-
-			}
-		}).start();
+		zombieIcon = new ImageIcon("images/zombie_walk.gif");
+		zombie_attackIcon = new ImageIcon("images/zombie1.png");
+		setIcon(zombieIcon);
+		setSize(90, 90);
+		setLocation(x, y);
+		MoveLeft();
 	}
 
 	public void MoveLeft() {
@@ -38,7 +32,7 @@ public class Zombie extends JLabel {
 
 			@Override
 			synchronized public void run() {
-				while (isMoving) {
+				while (isMoving2) {
 					zombie.x -= 10;
 					setLocation(x, y);
 					try {

@@ -37,12 +37,13 @@ public class IntroImg extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				new GamePanel();
 				introimg.setVisible(false);
+			
 			}
 		});
 	}
 
 	class IntroPanel extends JPanel {
-		private ImageIcon icon = new ImageIcon("images/intro.jpg");
+		private ImageIcon icon = new ImageIcon("images/main_img3.png");
 		private Image img = icon.getImage();
 
 		public void paintComponent(Graphics g) {

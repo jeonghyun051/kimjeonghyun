@@ -12,20 +12,16 @@ public class Mouse extends JLabel {
 	public int x = 0;
 	public int y = 250;
 	public final static String TAG = "Mouse:";
+	public boolean isMoving = true;
 
 	public Mouse() {
-		new Thread(new Runnable() {
 
-			@Override
-			public void run() {
-				mouseIcon = new ImageIcon("images/mouse_walk.gif");
-				setIcon(mouseIcon);
-				setSize(80, 80);
-				setLocation(x, y);
-				MoveLight();
+		mouseIcon = new ImageIcon("images/mouse_walk.gif");
+		setIcon(mouseIcon);
+		setSize(80, 80);
+		setLocation(x, y);
+		MoveLight();
 
-			}
-		}).start();
 	}
 
 	public void MoveLight() {
@@ -33,7 +29,7 @@ public class Mouse extends JLabel {
 
 			@Override
 			public void run() {
-				while (true) {
+				while (isMoving) {
 					mouse.x += 10;
 					setLocation(x, y);
 					try {
